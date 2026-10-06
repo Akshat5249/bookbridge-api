@@ -181,9 +181,9 @@ exit-1 and exit-2 checks. See [verification evidence](docs/VERIFICATION.md).
 The Dockerfile uses `python:3.12-slim`, pinned requirements, only application
 source, an unprivileged user and a Python `/health` HEALTHCHECK. Build with
 `make docker-build`, then run with `make docker-run` when Docker is running.
-The local Docker CLI exists but the daemon socket was absent: build/run/health
-checks could not be verified in this environment. These targets are supplied as
-unverified Docker instructions, not claimed successful checks.
+Docker build and run were verified on the user's machine. The container's
+`/health` endpoint works, its HEALTHCHECK reports `healthy`, and it runs as the
+non-root user `bookbridge`. The evaluator also passed against the container.
 
 Make targets: `install`, `run`, `test`, `lint`, `evaluate`, `docker-build`,
 `docker-run`. GitHub Actions installs on Python 3.12, runs lint, format, socket-blocked

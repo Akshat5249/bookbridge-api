@@ -38,9 +38,13 @@ Commands run from repo root. Activated-venv commands are equivalent to their
 | `.venv/bin/python scripts/test_api.py --base-url http://127.0.0.1:8001 --skip-fault-scenarios` | 36 live passes, 10 fault skips (already tested offline), exit 0 |
 | `make install`, `make test`, `make lint`, `make evaluate` | Passed; evaluate 46/46 |
 | `BOOKBRIDGE_UPSTREAM_BASE_URL=http://127.0.0.1:8765 make run` | Started; local health verified |
-| `docker version` | Client installed; daemon socket absent |
-| `docker build -t bookbridge-api .`, `make docker-build` | Failed: Docker daemon unavailable |
-| `make docker-run` (executes `docker run --rm -p 8000:8000 bookbridge-api`) | Failed: Docker daemon unavailable |
+| `docker version` | Client installed; Docker subsequently verified on the user's machine |
+| `docker build -t bookbridge-api .` | Passed on the user's machine |
+| `docker run --rm -p 8000:8000 bookbridge-api` | Passed on the user's machine |
+| Container `/health` | Passed on the user's machine |
+| Docker HEALTHCHECK | Reports `healthy`, verified on the user's machine |
+| Container runtime user | `bookbridge` (non-root), verified on the user's machine |
+| Evaluator against the container | Passed on the user's machine |
 
 All six exact README `curl -sS` commands returned successful JSON against local
 fixtures. The live evaluator made its single permitted full-index run (~11.3s
@@ -78,8 +82,9 @@ successful. Synthetic fixtures cover detail markup and multi-page categories;
 the live evaluator separately verified the golden detail page. No parser changes
 were needed for real HTML.
 
-Docker build/run/container health are unverified because the daemon is not
-running. GitHub-hosted CI has not run. Browser DevTools network inspection was
+Docker build/run, container `/health`, HEALTHCHECK (`healthy`), the non-root user
+(`bookbridge`) and the evaluator against the container were verified on the user's
+machine. GitHub-hosted CI has not run. Browser DevTools network inspection was
 not performed; no claim is made that hidden JSON endpoints are impossible.
 Remaining integration risks and the authorized long-term fix are in
 [../LIMITATIONS.md](../LIMITATIONS.md).
