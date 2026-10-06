@@ -11,7 +11,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_prefix="BOOKBRIDGE_", env_file=".env", extra="ignore")
     upstream_base_url: str = "https://books.toscrape.com"
-    user_agent: str = "BookBridgeAPI/1.0 (educational demo; contact: akshat133tayal8622@gmail.com)"
+    user_agent: str = "BookBridgeAPI/1.0 (educational demo; contact: akshattayal8622@gmail.com)"
     connect_timeout_seconds: float = Field(default=3, gt=0)
     read_timeout_seconds: float = Field(default=8, gt=0)
     max_retries: int = Field(default=2, ge=0, le=5)

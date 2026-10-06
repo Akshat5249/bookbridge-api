@@ -123,7 +123,7 @@ All variables are optional, prefixed with `BOOKBRIDGE_`. The supplied
 | Suffix | Default | Purpose |
 | --- | --- | --- |
 | `UPSTREAM_BASE_URL` | `https://books.toscrape.com` | HTTP(S) origin; fixture override supported |
-| `USER_AGENT` | `BookBridgeAPI/1.0 (educational demo; contact: akshat133tayal8622@gmail.com)` | Descriptive honest identity |
+| `USER_AGENT` | `BookBridgeAPI/1.0 (educational demo; contact: akshattayal8622@gmail.com)` | Descriptive honest identity |
 | `CONNECT_TIMEOUT_SECONDS` | 3 | Connection timeout |
 | `READ_TIMEOUT_SECONDS` | 8 | Read/write/pool timeout |
 | `MAX_RETRIES` | 2 | Retries after initial attempt, maximum 5 |
