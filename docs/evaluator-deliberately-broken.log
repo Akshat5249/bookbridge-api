@@ -1,0 +1,117 @@
+FAIL  L01 health returns status ok (0 ms)
+      expected: 200 status=ok
+      actual:   HTTP 200, body: {"status": "broken"}; status ok
+FAIL  L02 all six OpenAPI paths (0 ms)
+      expected: six documented paths
+      actual:   HTTP 200, body: {"status": "broken"}; 'paths'
+FAIL  L03 books list and warmup (0 ms)
+      expected: 20 summaries and pagination
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L04 50-item page (0 ms)
+      expected: exactly 50 items
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L05 pages do not overlap (0 ms)
+      expected: disjoint IDs
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L06 exact rating filter (0 ms)
+      expected: all ratings 5
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L07 inclusive price range (1 ms)
+      expected: prices in [10,40]
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L08 equal price bounds (0 ms)
+      expected: includes boundary record
+      actual:   No response; warmup record available
+FAIL  L09 combined AND filters (0 ms)
+      expected: rating 3 and price [10,60]
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L10 full book detail (0 ms)
+      expected: typed detail schema and matching ID
+      actual:   No response; warmup record available
+FAIL  L11 golden record (0 ms)
+      expected: documented golden fields
+      actual:   HTTP 200, body: {"status": "broken"}; 'data'
+FAIL  L12 title substring search (0 ms)
+      expected: nonempty light matches
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L13 case-insensitive search (0 ms)
+      expected: same totals
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L14 search with no match (0 ms)
+      expected: empty result total 0
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L15 search pagination (0 ms)
+      expected: one item on page 2
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L16 sidebar categories (0 ms)
+      expected: 40 categories with poetry
+      actual:   HTTP 200, body: {"status": "broken"}; 'data'
+FAIL  L17 category books (0 ms)
+      expected: nonempty Poetry results
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+FAIL  L18 category page past end (0 ms)
+      expected: 200 empty data
+      actual:   HTTP 200, body: {"status": "broken"}; list envelope
+PASS  H01 request ID header (0 ms)
+FAIL  V01 /api/v1/books?page=0 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V02 /api/v1/books?page=-1 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V03 /api/v1/books?page=abc (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V04 /api/v1/books?page_size=0 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V05 /api/v1/books?page_size=1000 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V06 /api/v1/books?rating=0 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V07 /api/v1/books?rating=6 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V08 /api/v1/books?min_price=-1 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V09 /api/v1/books?min_price=50&max_price=10 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V10 /api/v1/search?q= (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V11 /api/v1/search (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  V12 /api/v1/search?q=%20%20 (0 ms)
+      expected: 422 VALIDATION_ERROR
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 422
+FAIL  N01 /api/v1/books/does-not-exist_0 (0 ms)
+      expected: 404 NOT_FOUND
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 404
+FAIL  N02 /api/v1/books/..%2f..%2fetc (0 ms)
+      expected: 404 NOT_FOUND
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 404
+FAIL  N03 /api/v1/categories/no-such-category/books (0 ms)
+      expected: 404 NOT_FOUND
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 404
+FAIL  N04 /api/v1/unknown (0 ms)
+      expected: 404 NOT_FOUND
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 404
+FAIL  N05 POST method rejected (0 ms)
+      expected: 405 METHOD_NOT_ALLOWED
+      actual:   HTTP 200, body: {"status": "broken"}; HTTP 405
+SKIP  F01 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F02 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F03 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F04 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F05 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F06 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F07 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F08 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F09 fault scenario (--skip-fault-scenarios) (0 ms)
+SKIP  F10 fault scenario (--skip-fault-scenarios) (0 ms)
+Passed 1  Failed 35  Skipped 10 -> EXIT 1

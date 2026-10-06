@@ -1,0 +1,17 @@
+[project]
+name = "bookbridge-api"
+version = "1.0.0"
+description = "Read-only JSON API over the public Books to Scrape sandbox"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

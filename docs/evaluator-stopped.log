@@ -1,0 +1,2 @@
+Service unreachable: <urlopen error [Errno 61] Connection refused>. Start uvicorn src.main:app first.
+Passed 0  Failed 0  Skipped 0 -> EXIT 2
